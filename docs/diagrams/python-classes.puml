@@ -1,0 +1,112 @@
+@startuml classes_dyno-lab
+set namespaceSeparator none
+class "CLITestMixin" as dyno_lab.cli.CLITestMixin {
+  run_cli(func: Any, args: list[str] | None, stdin: str | None) -> CliResult
+}
+class "CapturedCall" as dyno_lab.proc.CapturedCall {
+  args : list[str] | tuple[str, ...]
+  kwargs : dict[str, Any]
+}
+class "CliResult" as dyno_lab.cli.CliResult {
+  exit_code : int
+  output : str
+  stderr : str
+  stdout : str
+  assert_error_contains(text: str) -> None
+  assert_failure(expected_code: int | None) -> None
+  assert_output_contains(text: str) -> None
+  assert_success() -> None
+}
+class "DynoTestCase" as dyno_lab.base.DynoTestCase {
+  assertApproxEqual(first: float, second: float, rel: float, msg: str | None) -> None
+  assertContainsAll(container: Any, items: list[Any], msg: str | None) -> None
+  assertDictSubset(subset: dict[str, Any], whole: dict[str, Any], msg: str | None) -> None
+  assertDirExists(path: str | Path, msg: str | None) -> None
+  assertExitCode(code: int, expected: int, msg: str | None) -> None
+  assertFileContains(path: str | Path, text: str, msg: str | None) -> None
+  assertFileExists(path: str | Path, msg: str | None) -> None
+  assertFileNotContains(path: str | Path, text: str, msg: str | None) -> None
+  assertNoneOf(container: Any, items: list[Any], msg: str | None) -> None
+  assertOutputContains(output: str, text: str, label: str, msg: str | None) -> None
+}
+class "EnvPatch" as dyno_lab.env.EnvPatch {
+  decorator(env: dict[str, str])
+}
+class "ProcessRecorder" as dyno_lab.proc.ProcessRecorder {
+  call_count : int
+  calls : list[CapturedCall]
+  commands() -> list[list[str] | tuple[str, ...]]
+  stdin_inputs() -> list[str]
+}
+class "RaisingSession" as dyno_lab.http.RaisingSession {
+  get() -> None
+  post() -> None
+}
+class "SequenceSession" as dyno_lab.http.SequenceSession {
+  call_count : int
+  calls : list[_CapturedRequest]
+  get(url: str, params: dict[str, Any] | None) -> _FakeResponse
+  post(url: str, params: dict[str, Any] | None) -> _FakeResponse
+  urls_called() -> list[str]
+}
+class "SmokeResult" as dyno_lab.smoke.SmokeResult {
+  details : str
+  message : str
+  name : str
+  passed : bool
+  passed_result
+  failed(name: str, message: str, details: str) -> 'SmokeResult'
+  ok(name: str, message: str, details: str) -> 'SmokeResult'
+}
+class "SmokeRunner" as dyno_lab.smoke.SmokeRunner {
+  run_all() -> SmokeSummary
+}
+class "SmokeSummary" as dyno_lab.smoke.SmokeSummary {
+  all_passed : bool
+  failed : list[SmokeResult]
+  passed : list[SmokeResult]
+  results : list[SmokeResult]
+  raise_if_failed() -> None
+}
+class "SmokeTest" as dyno_lab.smoke.SmokeTest {
+  name : str
+  {abstract}run() -> SmokeResult
+  run_safe() -> SmokeResult
+}
+class "StaticSession" as dyno_lab.http.StaticSession {
+  calls : list[_CapturedRequest]
+  get(url: str, params: Any) -> _FakeResponse
+  post(url: str, params: Any) -> _FakeResponse
+}
+class "SubprocessPatch" as dyno_lab.proc.SubprocessPatch {
+  side_effect : Any
+  target : str
+}
+class "TempWorkdir" as dyno_lab.fs.TempWorkdir {
+  path : Path
+  assert_contains(rel_path: str, text: str) -> None
+  assert_exists(rel_path: str) -> None
+  assert_not_exists(rel_path: str) -> None
+  mkdir(rel_path: str) -> Path
+  populate(files: dict[str, str]) -> None
+  read(rel_path: str, encoding: str) -> str
+  write(rel_path: str, content: str, encoding: str) -> Path
+}
+class "_CapturedRequest" as dyno_lab.http._CapturedRequest {
+  kwargs : dict[str, Any]
+  method : str
+  params : dict[str, Any] | None
+  url : str
+}
+class "_FakeResponse" as dyno_lab.http._FakeResponse {
+  body : str
+  headers : dict[str, str]
+  status_code : int
+  text : str
+  json() -> Any
+  raise_for_status() -> None
+}
+dyno_lab.http.SequenceSession --> dyno_lab.http._CapturedRequest : calls
+dyno_lab.http.StaticSession --> dyno_lab.http._CapturedRequest : calls
+dyno_lab.proc.ProcessRecorder --> dyno_lab.proc.CapturedCall : calls
+@enduml
