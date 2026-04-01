@@ -1,0 +1,47 @@
+@startuml
+' Deterministic starter generated from repository structure by archility.
+!pragma layout smetana
+title dyno-lab Repository Architecture Starter
+
+package "dyno_lab" {
+  rectangle "base\nDynoTestCase" as base
+  rectangle "proc\nProcessRecorder\nSubprocessPatch" as proc
+  rectangle "env\nEnvPatch\npatched_env" as env
+  rectangle "fs\nTempWorkdir\nmake_tree" as fs
+  rectangle "cli\ncapture_cli\nCLITestMixin" as cli
+  rectangle "http\nSequenceSession\nStaticSession\nRaisingSession" as http
+  rectangle "schema\nassert_parity\nassert_row_width" as schema
+  rectangle "module\nload_module_by_path" as module
+  rectangle "markers\nMARKERS\nregister_markers" as markers
+  rectangle "fixtures\ndyno_tmp\ndyno_env\ndyno_proc\ndyno_cli" as fixtures
+  rectangle "smoke\nSmokeTest\nSmokeRunner\nSmokeResult" as smoke
+  rectangle "__init__\npublic API" as init
+}
+
+package "tests" {
+  rectangle "test_base\ntest_proc\ntest_env\ntest_fs\ntest_cli\ntest_http\ntest_schema\ntest_module\ntest_smoke" as tests
+}
+
+rectangle "Consumer Repos\n(install dyno-lab\nas dev dep)" as consumers
+
+init --> base
+init --> proc
+init --> env
+init --> fs
+init --> cli
+init --> http
+init --> schema
+init --> module
+init --> markers
+init --> smoke
+
+fixtures --> proc : wraps
+fixtures --> env : wraps
+fixtures --> fs : wraps
+fixtures --> cli : wraps
+fixtures --> markers : registers
+
+tests --> init : imports
+consumers --> init : imports
+
+@enduml
