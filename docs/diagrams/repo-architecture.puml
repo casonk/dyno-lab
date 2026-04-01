@@ -1,47 +1,78 @@
 @startuml
-' Deterministic starter generated from repository structure by archility.
-!pragma layout smetana
-title dyno-lab Repository Architecture Starter
 
-package "dyno_lab" {
-  rectangle "base\nDynoTestCase" as base
-  rectangle "proc\nProcessRecorder\nSubprocessPatch" as proc
-  rectangle "env\nEnvPatch\npatched_env" as env
-  rectangle "fs\nTempWorkdir\nmake_tree" as fs
-  rectangle "cli\ncapture_cli\nCLITestMixin" as cli
-  rectangle "http\nSequenceSession\nStaticSession\nRaisingSession" as http
-  rectangle "schema\nassert_parity\nassert_row_width" as schema
-  rectangle "module\nload_module_by_path" as module
-  rectangle "markers\nMARKERS\nregister_markers" as markers
-  rectangle "fixtures\ndyno_tmp\ndyno_env\ndyno_proc\ndyno_cli" as fixtures
-  rectangle "smoke\nSmokeTest\nSmokeRunner\nSmokeResult" as smoke
-  rectangle "__init__\npublic API" as init
+title dyno-lab Repository Architecture
+left to right direction
+!pragma layout elk
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam linetype ortho
+skinparam ArrowColor #2F4F4F
+skinparam ArrowThickness 2
+skinparam ArrowFontSize 12
+skinparam titleFontSize 26
+skinparam packageStyle rectangle
+skinparam packageFontSize 18
+skinparam packageFontStyle bold
+skinparam rectangleFontSize 12
+skinparam rectangleFontName Arial
+skinparam DefaultTextAlignment left
+
+package "Public API" as API_PANEL #F5F5F5 {
+  rectangle "dyno_lab.__init__\nRe-exports all public symbols\nfrom all modules below" as PUBLICAPI #DAE8FC
 }
 
-package "tests" {
-  rectangle "test_base\ntest_proc\ntest_env\ntest_fs\ntest_cli\ntest_http\ntest_schema\ntest_module\ntest_smoke" as tests
+package "Core Utilities" as CORE_PANEL #F5F5F5 {
+  rectangle "base\nDynoTestCase\n- assertFileExists / assertFileContains\n- assertContainsAll / assertDictSubset\n- assertApproxEqual\n- assertExitCode / assertOutputContains" as BASE #D5E8D4
+
+  rectangle "proc\nProcessRecorder\nSubprocessPatch\nbuild_completed_process\n- records every subprocess.run call\n- returns scripted CompletedProcess in order\n- falls back to configurable defaults" as PROC #D5E8D4
+
+  rectangle "env\nEnvPatch  patched_env  env_defaults\n- context manager over patch.dict(os.environ)\n- decorator mode via EnvPatch.decorator()\n- inline patched_env() contextmanager" as ENV #D5E8D4
+
+  rectangle "fs\nTempWorkdir  make_tree\n- context-managed temp directory\n- write / read / mkdir / populate helpers\n- inline assert_exists / assert_contains" as FS #D5E8D4
+
+  rectangle "cli\ncapture_cli  CliResult  CLITestMixin\n- replaces sys.stdout + sys.stderr with StringIO\n- returns (exit_code, stdout, stderr)\n- CliResult.assert_success/failure/output_contains" as CLI #D5E8D4
+
+  rectangle "http\nSequenceSession  StaticSession  RaisingSession\n- requests.Session-compatible mock objects\n- scripted responses in order / static / always-raises\n- records every get() and post() call" as HTTP #D5E8D4
+
+  rectangle "schema\nassert_row_width  assert_schema_keys\nassert_schema_shape  assert_parity\nassert_unique_keys\n- provider parity across N modules\n- row-width and type-shape validation" as SCHEMA #D5E8D4
+
+  rectangle "module\nload_module_by_path\n- importlib.util.spec_from_file_location wrapper\n- load by absolute or repo-root-relative path\n- custom module name support" as MODLOADER #D5E8D4
+
+  rectangle "smoke\nSmokeTest  SmokeResult\nSmokeSummary  SmokeRunner\n- abstract base class + run_safe() guard\n- SmokeResult.ok() / .failed()\n- SmokeRunner.run_all() -> SmokeSummary\n- summary.raise_if_failed()" as SMOKE #D5E8D4
 }
 
-rectangle "Consumer Repos\n(install dyno-lab\nas dev dep)" as consumers
+package "Pytest Integration" as PYTEST_PANEL #F5F5F5 {
+  rectangle "markers\nMARKERS dict  register_markers()\nunit / integration / smoke\nparity / slow / external" as MARKERS #FFE6CC
 
-init --> base
-init --> proc
-init --> env
-init --> fs
-init --> cli
-init --> http
-init --> schema
-init --> module
-init --> markers
-init --> smoke
+  rectangle "fixtures\ndyno_tmp  dyno_env  dyno_proc  dyno_cli\n- pytest fixtures wrapping core utilities\n- activate via pytest_plugins=[\"dyno_lab.fixtures\"]\n- auto-registers markers via pytest_configure" as FIXTURES #FFE6CC
+}
 
-fixtures --> proc : wraps
-fixtures --> env : wraps
-fixtures --> fs : wraps
-fixtures --> cli : wraps
-fixtures --> markers : registers
+package "Tests" as TEST_PANEL #F5F5F5 {
+  rectangle "tests/\ntest_base  test_proc  test_env  test_fs\ntest_cli  test_http  test_schema\ntest_module  test_smoke\n109 tests — unittest + pytest" as TESTS #FFF2CC
+}
 
-tests --> init : imports
-consumers --> init : imports
+rectangle "Consumer Repos\npip install -e ./util-repos/dyno-lab\npyproject.toml dev dep\npytest_plugins = [\"dyno_lab.fixtures\"]" as CONSUMERS #E1D5E7
+
+PUBLICAPI --> BASE
+PUBLICAPI --> PROC
+PUBLICAPI --> ENV
+PUBLICAPI --> FS
+PUBLICAPI --> CLI
+PUBLICAPI --> HTTP
+PUBLICAPI --> SCHEMA
+PUBLICAPI --> MODLOADER
+PUBLICAPI --> SMOKE
+PUBLICAPI --> MARKERS
+PUBLICAPI --> FIXTURES
+
+FIXTURES --> PROC : wraps
+FIXTURES --> ENV : wraps
+FIXTURES --> FS : wraps
+FIXTURES --> CLI : wraps
+FIXTURES --> MARKERS : registers
+
+TESTS ..> PUBLICAPI : imports + validates
+CONSUMERS --> PUBLICAPI : imports for test helpers
 
 @enduml
