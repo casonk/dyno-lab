@@ -30,3 +30,7 @@ change how future sessions work in this repo.
   (`"subprocess.run"`), which works for most cases.  When a module under test imports
   `subprocess` into its own namespace, set `target` to the module-qualified path
   (e.g. `"mymodule.subprocess.run"`) to intercept the call correctly.
+- Pin `ruff` to a specific version in both `.pre-commit-config.yaml` and CI so local
+  and hosted formatter results stay identical.  Mismatched ruff versions produce
+  implicit string-concat join differences that fail `ruff format --check` in CI even
+  when pre-commit passes locally.
