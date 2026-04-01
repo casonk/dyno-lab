@@ -41,3 +41,11 @@ change how future sessions work in this repo.
 - Prefer `!pragma layout elk` over `smetana` in PlantUML component/package
   diagrams.  `elk` is bundled with PlantUML, handles cross-package arrows
   reliably, and matches the rest of the portfolio's diagram style.
+- draw.io cells must always use `whiteSpace=wrap;html=1;overflow=hidden;` AND be
+  sized with adequate height for their text content.  As a rule: allow at least
+  22px per line of text at font size 12 plus 16px top/bottom padding, so a
+  3-line box needs at least 82px height.  Never size a container smaller than
+  its children, and always add `overflow=hidden` to swimlane containers so any
+  overflow is clipped rather than visually escaping the block boundary.
+- draw.io starter diagrams should never use "Focus Root" placeholder labels.
+  Replace them with the actual module or component names before committing.

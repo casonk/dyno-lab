@@ -1,60 +1,196 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile>
-  <diagram name="dyno-lab Architecture Starter">
-    <mxGraphModel>
+  <diagram name="dyno-lab Architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" value="dyno-lab Architecture Starter" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="10" y="10" width="560" height="30" as="geometry" />
+        <mxCell id="title" value="dyno-lab Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="860" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="10" value="dyno_lab package" style="swimlane;startSize=20;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="10" y="50" width="560" height="340" as="geometry" />
+        <mxCell id="publicapi" value="dyno_lab.__init__&#10;public API — re-exports all modules" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="58" width="270" height="52" as="geometry" />
         </mxCell>
-        <mxCell id="11" value="__init__&#10;public API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="10">
-          <mxGeometry x="210" y="30" width="140" height="40" as="geometry" />
+        <mxCell id="core_swim" value="Core Utilities" style="swimlane;startSize=26;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=14;fontStyle=1;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="10" y="206" width="860" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="12" value="Focus Root&#10;base.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="10" y="100" width="110" height="40" as="geometry" />
+        <mxCell id="base" value="base&#10;DynoTestCase" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="20" y="36" width="156" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="13" value="Focus Root&#10;proc.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="130" y="100" width="110" height="40" as="geometry" />
+        <mxCell id="proc" value="proc&#10;ProcessRecorder&#10;SubprocessPatch" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="186" y="36" width="156" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="14" value="Focus Root&#10;env.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="250" y="100" width="110" height="40" as="geometry" />
+        <mxCell id="env" value="env&#10;EnvPatch · patched_env&#10;env_defaults" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="352" y="36" width="156" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="15" value="Focus Root&#10;fs.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="370" y="100" width="110" height="40" as="geometry" />
+        <mxCell id="fs" value="fs&#10;TempWorkdir&#10;make_tree" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="518" y="36" width="156" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="16" value="Focus Root&#10;cli.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="10" y="165" width="110" height="40" as="geometry" />
+        <mxCell id="cli" value="cli&#10;capture_cli · CliResult&#10;CLITestMixin" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="684" y="36" width="156" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="17" value="Focus Root&#10;http.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="130" y="165" width="110" height="40" as="geometry" />
+        <mxCell id="http" value="http&#10;SequenceSession&#10;StaticSession · RaisingSession" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="15" y="256" width="195" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="18" value="Focus Root&#10;schema.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="250" y="165" width="110" height="40" as="geometry" />
+        <mxCell id="schema" value="schema&#10;assert_parity&#10;assert_row_width · assert_schema_keys" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="220" y="256" width="195" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="19" value="Focus Root&#10;module.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="370" y="165" width="110" height="40" as="geometry" />
+        <mxCell id="modloader" value="module&#10;load_module_by_path" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="425" y="174" width="195" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="20" value="Focus Root&#10;markers.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="10" y="230" width="110" height="40" as="geometry" />
+        <mxCell id="smoke" value="smoke&#10;SmokeTest · SmokeRunner&#10;SmokeResult · SmokeSummary" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
+          <mxGeometry x="630" y="174" width="215" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="21" value="Focus Root&#10;fixtures.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="10">
-          <mxGeometry x="130" y="230" width="110" height="40" as="geometry" />
+        <mxCell id="pytest_swim" value="Pytest Integration" style="swimlane;startSize=26;fillColor=#fff3e0;strokeColor=#e6821e;fontColor=#333333;fontSize=14;fontStyle=1;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="10" y="430" width="860" height="108" as="geometry" />
         </mxCell>
-        <mxCell id="22" value="Focus Root&#10;smoke.py" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="10">
-          <mxGeometry x="250" y="230" width="110" height="40" as="geometry" />
+        <mxCell id="markers" value="markers&#10;MARKERS · register_markers&#10;unit · integration · smoke · parity · slow · external" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="pytest_swim">
+          <mxGeometry x="15" y="32" width="405" height="146" as="geometry" />
         </mxCell>
-        <mxCell id="30" value="tests/" style="swimlane;startSize=20;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="10" y="410" width="260" height="60" as="geometry" />
+        <mxCell id="fixtures" value="fixtures&#10;dyno_tmp · dyno_env · dyno_proc · dyno_cli&#10;pytest_plugins = [&quot;dyno_lab.fixtures&quot;]" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="pytest_swim">
+          <mxGeometry x="430" y="32" width="415" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="31" value="test_base test_proc test_env test_fs&#10;test_cli test_http test_schema test_module test_smoke" style="text;html=1;align=left;" vertex="1" parent="30">
-          <mxGeometry x="5" y="25" width="250" height="30" as="geometry" />
+        <mxCell id="tests_swim" value="tests/" style="swimlane;startSize=26;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;fontSize=14;fontStyle=1;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="10" y="552" width="420" height="96" as="geometry" />
         </mxCell>
-        <mxCell id="40" value="Consumer Repos&#10;(install dyno-lab as dev dep)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="310" y="410" width="260" height="60" as="geometry" />
+        <mxCell id="tests" value="test_base · test_proc · test_env · test_fs · test_cli&#10;test_http · test_schema · test_module · test_smoke&#10;109 tests — unittest + pytest" style="text;html=1;align=left;whiteSpace=wrap;overflow=hidden;fontSize=11;" vertex="1" parent="tests_swim">
+          <mxGeometry x="10" y="82" width="395" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="consumers" value="Consumer Repos&#10;pip install -e ./util-repos/dyno-lab&#10;pytest_plugins = [&quot;dyno_lab.fixtures&quot;]" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="440" y="470" width="430" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="base" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="281" y="98" />
+              <mxPoint x="281" y="170" />
+              <mxPoint x="200" y="170" />
+              <mxPoint x="200" y="71" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="proc" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="env" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="fs" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="cli" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="599" y="84" />
+              <mxPoint x="599" y="271" />
+              <mxPoint x="660" y="271" />
+              <mxPoint x="660" y="76" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="http" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="345" y="134" />
+              <mxPoint x="877" y="134" />
+              <mxPoint x="877" y="232" />
+              <mxPoint x="112.5" y="232" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="schema" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="408.33" y="134" />
+              <mxPoint x="904" y="134" />
+              <mxPoint x="904" y="232" />
+              <mxPoint x="317.5" y="232" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="modloader" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="471.67" y="134" />
+              <mxPoint x="522.5" y="134" />
+              <mxPoint x="522.5" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="smoke" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="535" y="134" />
+              <mxPoint x="737.5" y="134" />
+              <mxPoint x="737.5" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="markers" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;jumpStyle=arc;jumpSize=10;" edge="1" source="publicapi" target="fixtures" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" value="wraps" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="fixtures" target="proc" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="406" y="72" />
+              <mxPoint x="406" y="-13" />
+              <mxPoint x="366" y="-13" />
+              <mxPoint x="366" y="66" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" value="wraps" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="fixtures" target="env" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" value="wraps" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="fixtures" target="fs" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" value="wraps" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="fixtures" target="cli" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" value="registers" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="fixtures" target="markers" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e17" value="imports" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="tests_swim" target="publicapi" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="220" y="528" />
+              <mxPoint x="428.5" y="528" />
+              <mxPoint x="428.5" y="134" />
+              <mxPoint x="345" y="134" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18" value="imports" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="consumers" target="publicapi" parent="1">
+          <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
+            <Array as="points">
+              <mxPoint x="655" y="446" />
+              <mxPoint x="446.5" y="446" />
+              <mxPoint x="446.5" y="134" />
+              <mxPoint x="535" y="134" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
