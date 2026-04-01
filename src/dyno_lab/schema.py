@@ -37,7 +37,7 @@ def assert_row_width(row: list[Any] | tuple[Any, ...], expected: int) -> None:
     actual = len(row)
     if actual != expected:
         raise AssertionError(
-            f"Row width mismatch: expected {expected} columns, got {actual}.\n" f"Row: {row!r}"
+            f"Row width mismatch: expected {expected} columns, got {actual}.\nRow: {row!r}"
         )
 
 
