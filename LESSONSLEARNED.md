@@ -34,3 +34,10 @@ change how future sessions work in this repo.
   and hosted formatter results stay identical.  Mismatched ruff versions produce
   implicit string-concat join differences that fail `ruff format --check` in CI even
   when pre-commit passes locally.
+- Avoid `init` as a PlantUML element alias — it is a reserved keyword (initial
+  pseudostate) that causes PlantUML to assume activity diagram mode, silently
+  breaking `rectangle` + `-->` arrow syntax.  Use `publicapi`, `pkg_init`, or
+  any other non-reserved name.
+- Prefer `!pragma layout elk` over `smetana` in PlantUML component/package
+  diagrams.  `elk` is bundled with PlantUML, handles cross-package arrows
+  reliably, and matches the rest of the portfolio's diagram style.
