@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dyno-lab"
+version = "0.1.0"
+description = "Portfolio-wide test bench utilities: fixtures, mocks, assertions, and smoke scaffolding."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Cason Konzer" },
+]
+keywords = ["testing", "fixtures", "mocks", "pytest", "unittest", "test-bench"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Testing",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "unit: pure unit test (no I/O, no network)",
+  "integration: multi-component or filesystem test",
+  "smoke: end-to-end health check",
+  "parity: contract / provider parity test",
+  "slow: test that is expected to take several seconds",
+  "external: requires a live external service",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
