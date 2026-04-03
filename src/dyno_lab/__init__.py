@@ -20,6 +20,7 @@ Public surface:
     from dyno_lab.time import FrozenTime, FastSleep
     from dyno_lab.log import LogCapture
     from dyno_lab.patch import AttrPatch
+    from dyno_lab.auto_pass import AutoPassRecorder, AutoPassPatch
 
 Pytest fixtures (add to conftest.py with ``pytest_plugins = ["dyno_lab.fixtures"]``):
 
@@ -27,6 +28,7 @@ Pytest fixtures (add to conftest.py with ``pytest_plugins = ["dyno_lab.fixtures"
 """
 
 from dyno_lab.base import DynoTestCase
+from dyno_lab.auto_pass import AutoPassPatch, AutoPassRecorder
 from dyno_lab.cli import CliResult, CLITestMixin, capture_cli
 from dyno_lab.env import EnvPatch, env_defaults
 from dyno_lab.fs import TempWorkdir, make_tree
@@ -55,6 +57,8 @@ from dyno_lab.time import FastSleep, FrozenTime
 
 __all__ = [
     "DynoTestCase",
+    "AutoPassRecorder",
+    "AutoPassPatch",
     "capture_cli",
     "CliResult",
     "CLITestMixin",
