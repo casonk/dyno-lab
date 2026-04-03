@@ -1,0 +1,22 @@
+# Known downstream repositories for dyno-lab.
+# Paths are relative to the portfolio root.
+# Track explicit code/test integrations here, not generic shared-utility
+# mentions from AGENTS.md alone.
+
+[utility_repo]
+path = "./util-repos/dyno-lab"
+
+[downstream_repos]
+tracking_basis = "explicit test or dependency integrations"
+paths = [
+  "./health-repos/doseido",                 # conftest.py + pyproject.toml
+  "./personal-finance",                     # conftest.py + dyno integration tests
+  "./research-repos/citegres",              # conftest.py + pyproject.toml
+  "./research-repos/pushshift_python",      # conftest.py + pyproject.toml
+  "./research-repos/sonetsim",              # sonetsim/tests/conftest.py
+  "./research-repos/zillow-public-data",    # conftest.py + pyproject.toml
+  "./util-repos/archility",                 # conftest.py + pyproject.toml
+  "./util-repos/auto-pass",                 # conftest.py + pyproject.toml
+  "./util-repos/intake",                    # conftest.py + pyproject.toml
+  "./util-repos/nordility",                 # conftest.py + pyproject.toml
+]
