@@ -1,5 +1,7 @@
 @startuml classes_dyno-lab
 set namespaceSeparator none
+class "AttrPatch" as dyno_lab.patch.AttrPatch {
+}
 class "CLITestMixin" as dyno_lab.cli.CLITestMixin {
   run_cli(func: Any, args: list[str] | None, stdin: str | None) -> CliResult
 }
@@ -32,6 +34,38 @@ class "DynoTestCase" as dyno_lab.base.DynoTestCase {
 class "EnvPatch" as dyno_lab.env.EnvPatch {
   decorator(env: dict[str, str])
 }
+class "FastSleep" as dyno_lab.time.FastSleep {
+  call_count : int
+  calls : list[float]
+  total_slept : float
+}
+class "FrozenTime" as dyno_lab.time.FrozenTime {
+  timestamp : float
+}
+class "LogCapture" as dyno_lab.log.LogCapture {
+  records : list[logging.LogRecord]
+  assert_logged(level: int, fragment: str) -> None
+  assert_not_logged(level: int, fragment: str) -> None
+  count(level: int | None) -> int
+  messages(level: int | None) -> list[str]
+}
+class "<color:red>PreflightError</color>" as dyno_lab.preflight.PreflightError {
+}
+class "PreflightReport" as dyno_lab.preflight.PreflightReport {
+  all_passed : bool
+  failed : list[_CheckResult]
+  passed : list[_CheckResult]
+  results : list[_CheckResult]
+  raise_if_failed() -> None
+}
+class "PreflightSuite" as dyno_lab.preflight.PreflightSuite {
+  require_env() -> PreflightSuite
+  require_import() -> PreflightSuite
+  require_port(host: str, port: int, timeout: float) -> PreflightSuite
+  require_tool() -> PreflightSuite
+  require_url(url: str, timeout: float) -> PreflightSuite
+  run() -> PreflightReport
+}
 class "ProcessRecorder" as dyno_lab.proc.ProcessRecorder {
   call_count : int
   calls : list[CapturedCall]
@@ -55,8 +89,8 @@ class "SmokeResult" as dyno_lab.smoke.SmokeResult {
   name : str
   passed : bool
   passed_result
-  failed(name: str, message: str, details: str) -> 'SmokeResult'
-  ok(name: str, message: str, details: str) -> 'SmokeResult'
+  failed(name: str, message: str, details: str) -> SmokeResult
+  ok(name: str, message: str, details: str) -> SmokeResult
 }
 class "SmokeRunner" as dyno_lab.smoke.SmokeRunner {
   run_all() -> SmokeSummary
@@ -98,6 +132,11 @@ class "_CapturedRequest" as dyno_lab.http._CapturedRequest {
   params : dict[str, Any] | None
   url : str
 }
+class "_CheckResult" as dyno_lab.preflight._CheckResult {
+  detail : str
+  label : str
+  passed : bool
+}
 class "_FakeResponse" as dyno_lab.http._FakeResponse {
   body : str
   headers : dict[str, str]
@@ -106,7 +145,15 @@ class "_FakeResponse" as dyno_lab.http._FakeResponse {
   json() -> Any
   raise_for_status() -> None
 }
+class "_FrozenDatetime" as dyno_lab.time._make_frozen_datetime_class._FrozenDatetime {
+  now(tz: datetime.tzinfo | None) -> datetime.datetime
+  utcnow() -> datetime.datetime
+}
+class "_ListHandler" as dyno_lab.log._ListHandler {
+  emit(record: logging.LogRecord) -> None
+}
 dyno_lab.http.SequenceSession --> dyno_lab.http._CapturedRequest : calls
 dyno_lab.http.StaticSession --> dyno_lab.http._CapturedRequest : calls
 dyno_lab.proc.ProcessRecorder --> dyno_lab.proc.CapturedCall : calls
+dyno_lab.preflight._CheckResult --o dyno_lab.preflight.PreflightReport : results
 @enduml

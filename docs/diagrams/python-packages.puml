@@ -2,31 +2,40 @@
 set namespaceSeparator none
 top to bottom direction
 skinparam componentStyle rectangle
-rectangle "dyno_lab\n0 child pkg, 11 modules\n12 python files\nexamples: base, cli, env" as dyno_lab
+rectangle "dyno_lab\n0 child pkg, 15 modules\n16 python files\nexamples: base, cli, env" as dyno_lab
 rectangle "dyno_lab.base\n1 python file" as dyno_lab.base
 rectangle "dyno_lab.cli\n1 python file" as dyno_lab.cli
 rectangle "dyno_lab.env\n1 python file" as dyno_lab.env
 rectangle "dyno_lab.fixtures\n1 python file" as dyno_lab.fixtures
 rectangle "dyno_lab.fs\n1 python file" as dyno_lab.fs
 rectangle "dyno_lab.http\n1 python file" as dyno_lab.http
+rectangle "dyno_lab.log\n1 python file" as dyno_lab.log
 rectangle "dyno_lab.markers\n1 python file" as dyno_lab.markers
 rectangle "dyno_lab.module\n1 python file" as dyno_lab.module
+rectangle "dyno_lab.patch\n1 python file" as dyno_lab.patch
+rectangle "dyno_lab.preflight\n1 python file" as dyno_lab.preflight
 rectangle "dyno_lab.proc\n1 python file" as dyno_lab.proc
 rectangle "dyno_lab.schema\n1 python file" as dyno_lab.schema
 rectangle "dyno_lab.smoke\n1 python file" as dyno_lab.smoke
+rectangle "dyno_lab.time\n1 python file" as dyno_lab.time
 dyno_lab --> dyno_lab.base
 dyno_lab --> dyno_lab.cli
 dyno_lab --> dyno_lab.env
 dyno_lab --> dyno_lab.fs
 dyno_lab --> dyno_lab.http
+dyno_lab --> dyno_lab.log
 dyno_lab --> dyno_lab.markers
 dyno_lab --> dyno_lab.module
+dyno_lab --> dyno_lab.patch
+dyno_lab --> dyno_lab.preflight
 dyno_lab --> dyno_lab.proc
 dyno_lab --> dyno_lab.schema
 dyno_lab --> dyno_lab.smoke
+dyno_lab --> dyno_lab.time
 dyno_lab.fixtures --> dyno_lab.cli
 dyno_lab.fixtures --> dyno_lab.env
 dyno_lab.fixtures --> dyno_lab.fs
 dyno_lab.fixtures --> dyno_lab.markers
+dyno_lab.fixtures --> dyno_lab.preflight
 dyno_lab.fixtures --> dyno_lab.proc
 @enduml
