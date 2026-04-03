@@ -9,20 +9,14 @@ from unittest.mock import MagicMock, patch
 
 from dyno_lab.preflight import (
     PreflightError,
-    PreflightReport,
     PreflightSuite,
-    _CheckResult,
     check_env,
     check_import,
     check_port,
     check_tool,
     check_url,
     pytest_collection_modifyitems,
-    requires_env,
-    requires_import,
-    requires_tool,
 )
-
 
 # ---------------------------------------------------------------------------
 # check_tool
@@ -211,8 +205,6 @@ class TestPreflightSuite(unittest.TestCase):
 class TestPytestCollectionHook(unittest.TestCase):
     def _make_item(self, markers_by_name: dict):
         """Build a fake pytest item whose iter_markers returns pre-built Mark objects."""
-        import pytest
-
         item = MagicMock()
 
         def _iter_markers(name):
