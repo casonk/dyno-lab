@@ -12,13 +12,13 @@
           <mxGeometry x="305" y="58" width="270" height="52" as="geometry" />
         </mxCell>
         <mxCell id="core_swim" value="Core Utilities" style="swimlane;startSize=26;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=14;fontStyle=1;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="10" y="206" width="860" height="210" as="geometry" />
+          <mxGeometry x="10" y="301" width="860" height="210" as="geometry" />
         </mxCell>
         <mxCell id="base" value="base&#10;DynoTestCase" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
-          <mxGeometry x="20" y="36" width="156" height="70" as="geometry" />
+          <mxGeometry x="20" y="82" width="156" height="70" as="geometry" />
         </mxCell>
         <mxCell id="proc" value="proc&#10;ProcessRecorder&#10;SubprocessPatch" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
-          <mxGeometry x="186" y="36" width="156" height="70" as="geometry" />
+          <mxGeometry x="186" y="82" width="156" height="70" as="geometry" />
         </mxCell>
         <mxCell id="env" value="env&#10;EnvPatch · patched_env&#10;env_defaults" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
           <mxGeometry x="352" y="36" width="156" height="70" as="geometry" />
@@ -30,10 +30,10 @@
           <mxGeometry x="684" y="36" width="156" height="70" as="geometry" />
         </mxCell>
         <mxCell id="http" value="http&#10;SequenceSession&#10;StaticSession · RaisingSession" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
-          <mxGeometry x="15" y="256" width="195" height="74" as="geometry" />
+          <mxGeometry x="15" y="351" width="195" height="74" as="geometry" />
         </mxCell>
         <mxCell id="schema" value="schema&#10;assert_parity&#10;assert_row_width · assert_schema_keys" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
-          <mxGeometry x="220" y="256" width="195" height="74" as="geometry" />
+          <mxGeometry x="220" y="351" width="195" height="74" as="geometry" />
         </mxCell>
         <mxCell id="modloader" value="module&#10;load_module_by_path" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="core_swim">
           <mxGeometry x="425" y="174" width="195" height="74" as="geometry" />
@@ -42,19 +42,19 @@
           <mxGeometry x="630" y="174" width="215" height="74" as="geometry" />
         </mxCell>
         <mxCell id="pytest_swim" value="Pytest Integration" style="swimlane;startSize=26;fillColor=#fff3e0;strokeColor=#e6821e;fontColor=#333333;fontSize=14;fontStyle=1;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="10" y="430" width="860" height="108" as="geometry" />
+          <mxGeometry x="10" y="525" width="860" height="108" as="geometry" />
         </mxCell>
         <mxCell id="markers" value="markers&#10;MARKERS · register_markers&#10;unit · integration · smoke · parity · slow · external" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="pytest_swim">
-          <mxGeometry x="15" y="32" width="405" height="146" as="geometry" />
+          <mxGeometry x="15" y="32" width="405" height="241" as="geometry" />
         </mxCell>
         <mxCell id="fixtures" value="fixtures&#10;dyno_tmp · dyno_env · dyno_proc · dyno_cli&#10;pytest_plugins = [&quot;dyno_lab.fixtures&quot;]" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="pytest_swim">
           <mxGeometry x="430" y="32" width="415" height="64" as="geometry" />
         </mxCell>
         <mxCell id="tests_swim" value="tests/" style="swimlane;startSize=26;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;fontSize=14;fontStyle=1;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="10" y="552" width="420" height="96" as="geometry" />
+          <mxGeometry x="10" y="647" width="420" height="96" as="geometry" />
         </mxCell>
         <mxCell id="tests" value="test_base · test_proc · test_env · test_fs · test_cli&#10;test_http · test_schema · test_module · test_smoke&#10;109 tests — unittest + pytest" style="text;html=1;align=left;whiteSpace=wrap;overflow=hidden;fontSize=11;" vertex="1" parent="tests_swim">
-          <mxGeometry x="10" y="82" width="395" height="56" as="geometry" />
+          <mxGeometry x="10" y="177" width="395" height="56" as="geometry" />
         </mxCell>
         <mxCell id="consumers" value="Consumer Repos&#10;pip install -e ./util-repos/dyno-lab&#10;pytest_plugins = [&quot;dyno_lab.fixtures&quot;]" style="rounded=1;whiteSpace=wrap;html=1;overflow=hidden;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="440" y="470" width="430" height="96" as="geometry" />
@@ -63,9 +63,9 @@
           <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
             <Array as="points">
               <mxPoint x="281" y="98" />
-              <mxPoint x="281" y="170" />
-              <mxPoint x="200" y="170" />
-              <mxPoint x="200" y="71" />
+              <mxPoint x="281" y="-22" />
+              <mxPoint x="200" y="-22" />
+              <mxPoint x="200" y="117" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -88,8 +88,8 @@
           <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
             <Array as="points">
               <mxPoint x="599" y="84" />
-              <mxPoint x="599" y="271" />
-              <mxPoint x="660" y="271" />
+              <mxPoint x="599" y="315" />
+              <mxPoint x="660" y="315" />
               <mxPoint x="660" y="76" />
             </Array>
           </mxGeometry>
@@ -99,8 +99,8 @@
             <Array as="points">
               <mxPoint x="345" y="134" />
               <mxPoint x="877" y="134" />
-              <mxPoint x="877" y="232" />
-              <mxPoint x="112.5" y="232" />
+              <mxPoint x="877" y="327" />
+              <mxPoint x="112.5" y="327" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -109,8 +109,8 @@
             <Array as="points">
               <mxPoint x="408.33" y="134" />
               <mxPoint x="904" y="134" />
-              <mxPoint x="904" y="232" />
-              <mxPoint x="317.5" y="232" />
+              <mxPoint x="904" y="327" />
+              <mxPoint x="317.5" y="327" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -146,9 +146,9 @@
           <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
             <Array as="points">
               <mxPoint x="406" y="72" />
-              <mxPoint x="406" y="-13" />
-              <mxPoint x="366" y="-13" />
-              <mxPoint x="366" y="66" />
+              <mxPoint x="406" y="147" />
+              <mxPoint x="366" y="147" />
+              <mxPoint x="366" y="112" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -175,8 +175,8 @@
         <mxCell id="e17" value="imports" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;jumpStyle=arc;jumpSize=10;" edge="1" source="tests_swim" target="publicapi" parent="1">
           <mxGeometry relative="1" as="geometry" archilityManagedRoute="1">
             <Array as="points">
-              <mxPoint x="220" y="528" />
-              <mxPoint x="428.5" y="528" />
+              <mxPoint x="220" y="623" />
+              <mxPoint x="428.5" y="623" />
               <mxPoint x="428.5" y="134" />
               <mxPoint x="345" y="134" />
             </Array>
