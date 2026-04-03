@@ -36,7 +36,11 @@ from dyno_lab.cli import CliResult, capture_cli_result
 from dyno_lab.env import EnvPatch
 from dyno_lab.fs import TempWorkdir
 from dyno_lab.markers import register_markers
+from dyno_lab.preflight import pytest_collection_modifyitems as _preflight_hook
 from dyno_lab.proc import ProcessRecorder
+
+# Re-expose so pytest picks up the pre-flight skip logic from this module.
+pytest_collection_modifyitems = _preflight_hook
 
 
 def pytest_configure(config: Any) -> None:
