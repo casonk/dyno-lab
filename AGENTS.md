@@ -15,6 +15,7 @@ CLI capture, HTTP session mocking, schema validation, or smoke scaffolding local
 ```
 src/dyno_lab/
   __init__.py      — public API re-exports
+  auto_pass.py     — auto-pass import stubs and call recorders for downstream tests
   base.py          — DynoTestCase (unittest.TestCase subclass with extra assertions)
   proc.py          — ProcessRecorder, SubprocessPatch (subprocess mock builders)
   env.py           — EnvPatch, patched_env (os.environ patching utilities)
@@ -28,6 +29,7 @@ src/dyno_lab/
   smoke.py         — SmokeTest, SmokeRunner, SmokeResult, SmokeSummary
 
 tests/
+  test_auto_pass.py
   test_base.py
   test_proc.py
   test_env.py

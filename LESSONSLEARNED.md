@@ -49,3 +49,7 @@ change how future sessions work in this repo.
   overflow is clipped rather than visually escaping the block boundary.
 - draw.io starter diagrams should never use "Focus Root" placeholder labels.
   Replace them with the actual module or component names before committing.
+- For downstream repos that import sibling helpers like `auto_pass` inside
+  function bodies, the most stable test seam is a fake package injected into
+  `sys.modules`; patching the original import path is often too late because
+  the import happens inside the function under test.
