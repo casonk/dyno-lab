@@ -47,6 +47,9 @@ MARKERS: dict[str, str] = {
     "parity": "contract / provider parity test",
     "slow": "test expected to take several seconds",
     "external": "requires a live external service or credential",
+    "requires_tool": "skip test if named tool(s) not found on PATH",
+    "requires_env": "skip test if named env var(s) not set",
+    "requires_import": "skip test if named package(s) not importable",
 }
 
 
