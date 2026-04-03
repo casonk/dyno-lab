@@ -36,7 +36,8 @@ _DEFAULT_FROZEN = datetime.datetime(2025, 1, 1, 0, 0, 0, tzinfo=_UTC)
 
 
 class FrozenTime:
-    """Freeze :func:`time.time`, :func:`time.monotonic`, and :meth:`datetime.datetime.now`.
+    """Freeze :func:`time.time`, :func:`time.monotonic`, and
+    :meth:`datetime.datetime.now`.
 
     Parameters
     ----------

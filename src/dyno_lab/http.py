@@ -104,17 +104,27 @@ class SequenceSession:
         self.calls: list[_CapturedRequest] = []
 
     def _pop(
-        self, method: str, url: str, params: dict[str, Any] | None, kwargs: dict[str, Any]
+        self,
+        method: str,
+        url: str,
+        params: dict[str, Any] | None,
+        kwargs: dict[str, Any],
     ) -> _FakeResponse:
-        self.calls.append(_CapturedRequest(method=method, url=url, params=params, kwargs=kwargs))
+        self.calls.append(
+            _CapturedRequest(method=method, url=url, params=params, kwargs=kwargs)
+        )
         if not self._responses:
             raise StopIteration("SequenceSession: no more scripted responses")
         return self._responses.pop(0)
 
-    def get(self, url: str, params: dict[str, Any] | None = None, **kwargs: Any) -> _FakeResponse:
+    def get(
+        self, url: str, params: dict[str, Any] | None = None, **kwargs: Any
+    ) -> _FakeResponse:
         return self._pop("GET", url, params, kwargs)
 
-    def post(self, url: str, params: dict[str, Any] | None = None, **kwargs: Any) -> _FakeResponse:
+    def post(
+        self, url: str, params: dict[str, Any] | None = None, **kwargs: Any
+    ) -> _FakeResponse:
         return self._pop("POST", url, params, kwargs)
 
     @property
@@ -146,8 +156,12 @@ class StaticSession:
         self._response = _FakeResponse(body, status_code)
         self.calls: list[_CapturedRequest] = []
 
-    def _record(self, method: str, url: str, params: Any, kwargs: dict[str, Any]) -> _FakeResponse:
-        self.calls.append(_CapturedRequest(method=method, url=url, params=params, kwargs=kwargs))
+    def _record(
+        self, method: str, url: str, params: Any, kwargs: dict[str, Any]
+    ) -> _FakeResponse:
+        self.calls.append(
+            _CapturedRequest(method=method, url=url, params=params, kwargs=kwargs)
+        )
         return self._response
 
     def get(self, url: str, params: Any = None, **kwargs: Any) -> _FakeResponse:

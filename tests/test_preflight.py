@@ -152,7 +152,12 @@ class TestPreflightSuite(unittest.TestCase):
         self.assertEqual(len(report.failed), 1)
 
     def test_mixed_results(self):
-        report = PreflightSuite().require_tool("__no_such_tool_xyz__").require_import("os").run()
+        report = (
+            PreflightSuite()
+            .require_tool("__no_such_tool_xyz__")
+            .require_import("os")
+            .run()
+        )
         self.assertEqual(len(report.passed), 1)
         self.assertEqual(len(report.failed), 1)
 
@@ -199,7 +204,8 @@ class TestPreflightSuite(unittest.TestCase):
 
 class TestPytestCollectionHook(unittest.TestCase):
     def _make_item(self, markers_by_name: dict):
-        """Build a fake pytest item whose iter_markers returns pre-built Mark objects."""
+        """Build a fake pytest item whose iter_markers returns
+        pre-built Mark objects."""
         item = MagicMock()
 
         def _iter_markers(name):
