@@ -27,6 +27,7 @@ Usage::
 
 from __future__ import annotations
 
+import contextlib
 from typing import Any
 
 _MISSING = object()
@@ -56,7 +57,7 @@ class AttrPatch:
         self._attrs = attrs
         self._saved: dict[str, Any] = {}
 
-    def __enter__(self) -> "AttrPatch":
+    def __enter__(self) -> AttrPatch:
         for name, value in self._attrs.items():
             prior = getattr(self._obj, name, _MISSING)
             self._saved[name] = prior
@@ -66,10 +67,8 @@ class AttrPatch:
     def __exit__(self, *args: Any) -> None:
         for name, prior in self._saved.items():
             if prior is _MISSING:
-                try:
+                with contextlib.suppress(AttributeError):
                     delattr(self._obj, name)
-                except AttributeError:
-                    pass
             else:
                 setattr(self._obj, name, prior)
         self._saved.clear()

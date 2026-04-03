@@ -169,7 +169,7 @@ class SubprocessPatch:
     target: str = "subprocess.run"
     _patcher: Any = field(default=None, init=False, repr=False)
 
-    def __enter__(self) -> "SubprocessPatch":
+    def __enter__(self) -> SubprocessPatch:
         self._patcher = patch(self.target, side_effect=self.side_effect)
         self._patcher.start()
         return self
