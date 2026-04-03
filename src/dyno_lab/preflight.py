@@ -262,17 +262,13 @@ def pytest_collection_modifyitems(items: list[Any], config: Any) -> None:  # noq
         for marker in item.iter_markers("requires_tool"):
             for name in marker.args:
                 if not check_tool(name):
-                    item.add_marker(
-                        pytest.mark.skip(reason=f"requires tool on PATH: {name!r}")
-                    )
+                    item.add_marker(pytest.mark.skip(reason=f"requires tool on PATH: {name!r}"))
                     break
 
         for marker in item.iter_markers("requires_env"):
             for key in marker.args:
                 if not check_env(key):
-                    item.add_marker(
-                        pytest.mark.skip(reason=f"requires env var: {key!r}")
-                    )
+                    item.add_marker(pytest.mark.skip(reason=f"requires env var: {key!r}"))
                     break
 
         for marker in item.iter_markers("requires_import"):
