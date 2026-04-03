@@ -72,9 +72,8 @@ class TestTempWorkdir(unittest.TestCase):
             wd.assert_exists("present.txt")
 
     def test_assert_exists_raises_for_absent_file(self):
-        with TempWorkdir() as wd:
-            with self.assertRaises(AssertionError):
-                wd.assert_exists("absent.txt")
+        with TempWorkdir() as wd, self.assertRaises(AssertionError):
+            wd.assert_exists("absent.txt")
 
     def test_assert_not_exists_passes_for_absent_file(self):
         with TempWorkdir() as wd:

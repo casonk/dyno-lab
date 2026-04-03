@@ -146,8 +146,7 @@ class PreflightReport:
         if self.failed:
             lines = [str(r) for r in self.failed]
             raise PreflightError(
-                f"{len(self.failed)} pre-flight check(s) failed:\n  "
-                + "\n  ".join(lines)
+                f"{len(self.failed)} pre-flight check(s) failed:\n  " + "\n  ".join(lines)
             )
 
     def __str__(self) -> str:
@@ -179,27 +178,25 @@ class PreflightSuite:
     def __init__(self) -> None:
         self._checks: list[tuple[str, Any]] = []
 
-    def require_tool(self, *names: str) -> "PreflightSuite":
+    def require_tool(self, *names: str) -> PreflightSuite:
         """Add a tool-on-PATH check for each name."""
         for name in names:
             self._checks.append((f"tool:{name}", lambda n=name: check_tool(n)))
         return self
 
-    def require_import(self, *packages: str) -> "PreflightSuite":
+    def require_import(self, *packages: str) -> PreflightSuite:
         """Add an importability check for each package."""
         for pkg in packages:
             self._checks.append((f"import:{pkg}", lambda p=pkg: check_import(p)))
         return self
 
-    def require_env(self, *keys: str) -> "PreflightSuite":
+    def require_env(self, *keys: str) -> PreflightSuite:
         """Add a non-empty env-var check for each key."""
         for key in keys:
             self._checks.append((f"env:{key}", lambda k=key: check_env(k)))
         return self
 
-    def require_port(
-        self, host: str, port: int, timeout: float = 2.0
-    ) -> "PreflightSuite":
+    def require_port(self, host: str, port: int, timeout: float = 2.0) -> PreflightSuite:
         """Add a TCP connectivity check."""
         self._checks.append(
             (
@@ -209,7 +206,7 @@ class PreflightSuite:
         )
         return self
 
-    def require_url(self, url: str, timeout: float = 5.0) -> "PreflightSuite":
+    def require_url(self, url: str, timeout: float = 5.0) -> PreflightSuite:
         """Add an HTTP reachability check."""
         self._checks.append((f"url:{url}", lambda u=url, t=timeout: check_url(u, t)))
         return self
@@ -270,17 +267,13 @@ def pytest_collection_modifyitems(items: list[Any], config: Any) -> None:
         for marker in item.iter_markers("requires_tool"):
             for name in marker.args:
                 if not check_tool(name):
-                    item.add_marker(
-                        pytest.mark.skip(reason=f"requires tool on PATH: {name!r}")
-                    )
+                    item.add_marker(pytest.mark.skip(reason=f"requires tool on PATH: {name!r}"))
                     break
 
         for marker in item.iter_markers("requires_env"):
             for key in marker.args:
                 if not check_env(key):
-                    item.add_marker(
-                        pytest.mark.skip(reason=f"requires env var: {key!r}")
-                    )
+                    item.add_marker(pytest.mark.skip(reason=f"requires env var: {key!r}"))
                     break
 
         for marker in item.iter_markers("requires_import"):

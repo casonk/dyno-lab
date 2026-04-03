@@ -69,7 +69,7 @@ class EnvPatch:
         self._clear = clear
         self._patcher: Any = None
 
-    def __enter__(self) -> "EnvPatch":
+    def __enter__(self) -> EnvPatch:
         self._patcher = patch.dict(os.environ, self._env, clear=self._clear)
         self._patcher.start()
         return self

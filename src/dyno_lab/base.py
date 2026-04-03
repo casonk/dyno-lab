@@ -38,19 +38,13 @@ class DynoTestCase(unittest.TestCase):
         if not p.is_dir():
             self.fail(msg or f"Expected directory does not exist: {p}")
 
-    def assertFileContains(
-        self, path: str | Path, text: str, msg: str | None = None
-    ) -> None:
+    def assertFileContains(self, path: str | Path, text: str, msg: str | None = None) -> None:
         """Assert that the file at *path* contains the substring *text*."""
         content = Path(path).read_text(encoding="utf-8")
         if text not in content:
-            self.fail(
-                msg or f"Expected {text!r} in {path}.\nActual content:\n{content[:500]}"
-            )
+            self.fail(msg or f"Expected {text!r} in {path}.\nActual content:\n{content[:500]}")
 
-    def assertFileNotContains(
-        self, path: str | Path, text: str, msg: str | None = None
-    ) -> None:
+    def assertFileNotContains(self, path: str | Path, text: str, msg: str | None = None) -> None:
         """Assert that the file at *path* does NOT contain the substring *text*."""
         content = Path(path).read_text(encoding="utf-8")
         if text in content:
@@ -121,9 +115,7 @@ class DynoTestCase(unittest.TestCase):
     # CLI / output assertions
     # ------------------------------------------------------------------ #
 
-    def assertExitCode(
-        self, code: int, expected: int = 0, msg: str | None = None
-    ) -> None:
+    def assertExitCode(self, code: int, expected: int = 0, msg: str | None = None) -> None:
         """Assert that an exit code equals *expected*."""
         if code != expected:
             self.fail(msg or f"Expected exit code {expected}, got {code}")
