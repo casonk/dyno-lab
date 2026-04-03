@@ -69,9 +69,6 @@ class TestFrozenTime(unittest.TestCase):
 
 class TestFastSleep(unittest.TestCase):
     def test_no_real_sleep_occurs(self):
-        import time as _t
-
-        start = _t.time.__doc__  # just ensure real time module is accessible
         with FastSleep():
             # would hang for 3600s if not intercepted
             time.sleep(3600)
