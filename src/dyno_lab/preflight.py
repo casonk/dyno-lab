@@ -45,9 +45,8 @@ import os
 import shutil
 import socket
 import urllib.request
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
-
 
 # ---------------------------------------------------------------------------
 # Standalone check functions
