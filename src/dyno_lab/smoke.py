@@ -51,7 +51,7 @@ class SmokeResult:
     details: str = ""
 
     @classmethod
-    def ok(cls, name: str, message: str = "ok", details: str = "") -> "SmokeResult":
+    def ok(cls, name: str, message: str = "ok", details: str = "") -> SmokeResult:
         """Return a passing result."""
         return cls(name=name, passed=True, message=message, details=details)
 
@@ -59,7 +59,7 @@ class SmokeResult:
     passed_result = ok
 
     @classmethod
-    def failed(cls, name: str, message: str, details: str = "") -> "SmokeResult":
+    def failed(cls, name: str, message: str, details: str = "") -> SmokeResult:
         """Return a failing result."""
         return cls(name=name, passed=False, message=message, details=details)
 
@@ -142,9 +142,7 @@ class SmokeSummary:
         """
         if self.failed:
             lines = [f"  {r}" for r in self.failed]
-            raise AssertionError(
-                f"{len(self.failed)} smoke test(s) failed:\n" + "\n".join(lines)
-            )
+            raise AssertionError(f"{len(self.failed)} smoke test(s) failed:\n" + "\n".join(lines))
 
     def __str__(self) -> str:
         total = len(self.results)

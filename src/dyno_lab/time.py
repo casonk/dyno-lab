@@ -63,7 +63,7 @@ class FrozenTime:
         """The frozen instant as a POSIX timestamp."""
         return self._frozen.timestamp()
 
-    def __enter__(self) -> "FrozenTime":
+    def __enter__(self) -> FrozenTime:
         ts = self.timestamp
 
         self._patchers = [
@@ -89,13 +89,13 @@ def _make_frozen_datetime_class(frozen: datetime.datetime) -> type:
 
     class _FrozenDatetime(datetime.datetime):
         @classmethod
-        def now(cls, tz: datetime.tzinfo | None = None) -> "datetime.datetime":  # type: ignore[override]
+        def now(cls, tz: datetime.tzinfo | None = None) -> datetime.datetime:  # type: ignore[override]
             if tz is None:
                 return frozen.replace(tzinfo=None)
             return frozen.astimezone(tz)
 
         @classmethod
-        def utcnow(cls) -> "datetime.datetime":  # type: ignore[override]
+        def utcnow(cls) -> datetime.datetime:  # type: ignore[override]
             return frozen.replace(tzinfo=None)
 
     _FrozenDatetime.__name__ = "datetime"
@@ -123,7 +123,7 @@ class FastSleep:
     def _fake_sleep(self, seconds: float) -> None:
         self._calls.append(float(seconds))
 
-    def __enter__(self) -> "FastSleep":
+    def __enter__(self) -> FastSleep:
         self._calls.clear()
         self._patcher = patch("time.sleep", side_effect=self._fake_sleep)
         self._patcher.start()

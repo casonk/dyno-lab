@@ -11,9 +11,7 @@ class TestLoadModuleByPath(unittest.TestCase):
     def test_loads_module_with_simple_function(self):
         with tempfile.TemporaryDirectory() as tmp:
             mod_file = Path(tmp) / "my_util.py"
-            mod_file.write_text(
-                "def greet(name): return f'hello {name}'\n", encoding="utf-8"
-            )
+            mod_file.write_text("def greet(name): return f'hello {name}'\n", encoding="utf-8")
 
             mod = load_module_by_path(mod_file)
             self.assertEqual(mod.greet("world"), "hello world")

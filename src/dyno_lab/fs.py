@@ -75,7 +75,7 @@ class TempWorkdir:
         self._tmpdir: tempfile.TemporaryDirectory[str] | None = None
         self.path: Path = Path()
 
-    def __enter__(self) -> "TempWorkdir":
+    def __enter__(self) -> TempWorkdir:
         self._tmpdir = tempfile.TemporaryDirectory()
         self.path = Path(self._tmpdir.name)
         return self
@@ -143,6 +143,4 @@ class TempWorkdir:
         """Raise ``AssertionError`` if *rel_path* does not contain *text*."""
         content = self.read(rel_path)
         if text not in content:
-            raise AssertionError(
-                f"Expected {text!r} in {rel_path}.\nActual:\n{content[:500]}"
-            )
+            raise AssertionError(f"Expected {text!r} in {rel_path}.\nActual:\n{content[:500]}")
