@@ -28,7 +28,6 @@ Usage::
 from __future__ import annotations
 
 import datetime
-import time as _time_module
 from typing import Any
 from unittest.mock import patch
 
