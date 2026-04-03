@@ -59,7 +59,8 @@ def check_tool(name: str) -> bool:
 
 
 def check_import(package: str) -> bool:
-    """Return ``True`` if *package* can be imported with :func:`importlib.import_module`."""
+    """Return ``True`` if *package* can be imported with
+    :func:`importlib.import_module`."""
     try:
         importlib.import_module(package)
         return True
@@ -145,7 +146,8 @@ class PreflightReport:
         if self.failed:
             lines = [str(r) for r in self.failed]
             raise PreflightError(
-                f"{len(self.failed)} pre-flight check(s) failed:\n  " + "\n  ".join(lines)
+                f"{len(self.failed)} pre-flight check(s) failed:\n  "
+                + "\n  ".join(lines)
             )
 
     def __str__(self) -> str:
@@ -195,10 +197,15 @@ class PreflightSuite:
             self._checks.append((f"env:{key}", lambda k=key: check_env(k)))
         return self
 
-    def require_port(self, host: str, port: int, timeout: float = 2.0) -> "PreflightSuite":
+    def require_port(
+        self, host: str, port: int, timeout: float = 2.0
+    ) -> "PreflightSuite":
         """Add a TCP connectivity check."""
         self._checks.append(
-            (f"port:{host}:{port}", lambda h=host, p=port, t=timeout: check_port(h, p, t))
+            (
+                f"port:{host}:{port}",
+                lambda h=host, p=port, t=timeout: check_port(h, p, t),
+            )
         )
         return self
 
@@ -250,8 +257,9 @@ def requires_import(*packages: str) -> Any:
 # ---------------------------------------------------------------------------
 
 
-def pytest_collection_modifyitems(items: list[Any], config: Any) -> None:  # noqa: ARG001
-    """Auto-skip tests marked with ``requires_tool``, ``requires_env``, or ``requires_import``.
+def pytest_collection_modifyitems(items: list[Any], config: Any) -> None:
+    """Auto-skip tests marked with ``requires_tool``, ``requires_env``,
+    or ``requires_import``.
 
     Activated automatically when ``pytest_plugins = ["dyno_lab.fixtures"]`` is
     set in ``conftest.py``.
@@ -262,13 +270,17 @@ def pytest_collection_modifyitems(items: list[Any], config: Any) -> None:  # noq
         for marker in item.iter_markers("requires_tool"):
             for name in marker.args:
                 if not check_tool(name):
-                    item.add_marker(pytest.mark.skip(reason=f"requires tool on PATH: {name!r}"))
+                    item.add_marker(
+                        pytest.mark.skip(reason=f"requires tool on PATH: {name!r}")
+                    )
                     break
 
         for marker in item.iter_markers("requires_env"):
             for key in marker.args:
                 if not check_env(key):
-                    item.add_marker(pytest.mark.skip(reason=f"requires env var: {key!r}"))
+                    item.add_marker(
+                        pytest.mark.skip(reason=f"requires env var: {key!r}")
+                    )
                     break
 
         for marker in item.iter_markers("requires_import"):

@@ -139,7 +139,8 @@ class ProcessRecorder:
         return [c.args for c in self.calls]
 
     def stdin_inputs(self) -> list[str]:
-        """Return the ``input=`` kwarg from every recorded call (empty string if absent)."""
+        """Return the ``input=`` kwarg from every recorded call
+        (empty string if absent)."""
         return [c.kwargs.get("input", "") for c in self.calls]
 
 

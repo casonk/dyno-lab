@@ -142,7 +142,9 @@ class SmokeSummary:
         """
         if self.failed:
             lines = [f"  {r}" for r in self.failed]
-            raise AssertionError(f"{len(self.failed)} smoke test(s) failed:\n" + "\n".join(lines))
+            raise AssertionError(
+                f"{len(self.failed)} smoke test(s) failed:\n" + "\n".join(lines)
+            )
 
     def __str__(self) -> str:
         total = len(self.results)

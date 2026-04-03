@@ -143,4 +143,6 @@ class TempWorkdir:
         """Raise ``AssertionError`` if *rel_path* does not contain *text*."""
         content = self.read(rel_path)
         if text not in content:
-            raise AssertionError(f"Expected {text!r} in {rel_path}.\nActual:\n{content[:500]}")
+            raise AssertionError(
+                f"Expected {text!r} in {rel_path}.\nActual:\n{content[:500]}"
+            )

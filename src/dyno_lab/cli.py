@@ -73,7 +73,9 @@ class CliResult:
         if self.exit_code == 0:
             raise AssertionError("CLI succeeded but failure was expected.")
         if expected_code is not None and self.exit_code != expected_code:
-            raise AssertionError(f"Expected exit code {expected_code}, got {self.exit_code}.")
+            raise AssertionError(
+                f"Expected exit code {expected_code}, got {self.exit_code}."
+            )
 
     def assert_output_contains(self, text: str) -> None:
         """Raise ``AssertionError`` unless *text* appears in stdout."""
