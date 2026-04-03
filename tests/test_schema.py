@@ -26,7 +26,9 @@ class TestAssertRowWidth(unittest.TestCase):
 
 class TestAssertSchemaKeys(unittest.TestCase):
     def test_passes_when_all_keys_present(self):
-        assert_schema_keys({"id": 1, "name": "x", "extra": True}, required=["id", "name"])
+        assert_schema_keys(
+            {"id": 1, "name": "x", "extra": True}, required=["id", "name"]
+        )
 
     def test_fails_when_key_missing(self):
         with self.assertRaises(AssertionError) as ctx:

@@ -96,7 +96,11 @@ class LogCapture:
         level:
             If given, only return messages for records at exactly *level*.
         """
-        recs = self._records if level is None else [r for r in self._records if r.levelno == level]
+        recs = (
+            self._records
+            if level is None
+            else [r for r in self._records if r.levelno == level]
+        )
         return [r.getMessage() for r in recs]
 
     def count(self, level: int | None = None) -> int:
@@ -122,5 +126,6 @@ class LogCapture:
             if record.levelno == level and fragment in record.getMessage():
                 level_name = logging.getLevelName(level)
                 raise AssertionError(
-                    f"Unexpected {level_name} log record containing {fragment!r} was found."
+                    f"Unexpected {level_name} log record containing"
+                    f" {fragment!r} was found."
                 )

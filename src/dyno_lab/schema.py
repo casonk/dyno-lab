@@ -37,7 +37,8 @@ def assert_row_width(row: list[Any] | tuple[Any, ...], expected: int) -> None:
     actual = len(row)
     if actual != expected:
         raise AssertionError(
-            f"Row width mismatch: expected {expected} columns, got {actual}.\nRow: {row!r}"
+            f"Row width mismatch: expected {expected} columns, got {actual}."
+            f"\nRow: {row!r}"
         )
 
 
@@ -134,10 +135,14 @@ def assert_parity(
                 f"{getattr(reference_module, '__name__', repr(reference_module))})"
             )
     if mismatches:
-        raise AssertionError(f"Provider parity failure for {attribute}:\n" + "\n".join(mismatches))
+        raise AssertionError(
+            f"Provider parity failure for {attribute}:\n" + "\n".join(mismatches)
+        )
 
 
-def assert_unique_keys(specs: list[Any], key_attr: str = "key", label: str = "specs") -> None:
+def assert_unique_keys(
+    specs: list[Any], key_attr: str = "key", label: str = "specs"
+) -> None:
     """Assert that every object in *specs* has a unique value for *key_attr*.
 
     Covers the ``test_provider_keys_are_unique`` pattern::
