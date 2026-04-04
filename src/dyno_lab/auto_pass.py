@@ -71,8 +71,7 @@ class AutoPassRecorder:
 
     def __init__(self, responses: dict[str, Any] | None = None) -> None:
         self._responses: dict[str, list[Any]] = {
-            entry: _coerce_outcomes(outcome)
-            for entry, outcome in (responses or {}).items()
+            entry: _coerce_outcomes(outcome) for entry, outcome in (responses or {}).items()
         }
         self.load_calls: list[AutoPassLoadCall] = []
         self.resolve_calls: list[AutoPassResolveCall] = []
