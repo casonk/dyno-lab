@@ -23,3 +23,5 @@ htmlcov/
 # Local session files
 CHATHISTORY.md
 .codex
+
+CLAUDE.md
