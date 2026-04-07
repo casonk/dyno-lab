@@ -118,6 +118,17 @@ tests, calls `run_safe()` on each, and returns a `SmokeSummary`.
 - Update `__init__.py` exports and this `AGENTS.md` layout when adding modules.
 - Prefer explicit context managers and factories over magic or auto-fixtures.
 
+## Local CI Verification
+
+Run before every push:
+
+```bash
+pre-commit run --all-files
+pytest -q
+```
+
+Do not push changes that have not passed all checks locally.
+
 ## Portfolio Standards Reference
 
 For portfolio-wide repository standards, consult the control-plane repo at
