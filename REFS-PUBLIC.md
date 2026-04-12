@@ -1,4 +1,4 @@
-# REFS-PUBLIC.md — Public References
+# REFS-PUBLIC.md - Public References
 
 > Record external public repositories, datasets, documentation, APIs, or other
 > public resources that this repository utilizes or depends on.
@@ -6,22 +6,17 @@
 
 ## Public Repositories
 
-<!-- External repos this project depends on, forks, or integrates with:
-- https://github.com/org/repo — description of usage
--->
+- No fixed external code repository is the main upstream; this repo packages local reusable test helpers.
 
 ## Public Datasets and APIs
 
-<!-- Publicly accessible data sources, REST APIs, or external feeds consumed here:
-- https://example.com/dataset — description of usage
--->
+- No standing public datasets or APIs are required; the repo provides local fixtures, mocks, and test scaffolding.
 
 ## Documentation and Specifications
 
-<!-- Reference docs, RFCs, standards, or upstream project documentation:
-- https://docs.example.com — description
--->
+- https://docs.pytest.org/ - pytest fixture and marker integration reference
+- https://docs.python.org/3/library/unittest.html - unittest base-class and assertion model used by DynoTestCase
 
 ## Notes
 
-<!-- Any context about how these public references are used or versioned -->
+- Consumer repos bring their own application APIs and datasets. dyno-lab only owns the reusable test bench surface.
