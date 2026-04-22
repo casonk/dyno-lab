@@ -53,3 +53,6 @@ change how future sessions work in this repo.
   function bodies, the most stable test seam is a fake package injected into
   `sys.modules`; patching the original import path is often too late because
   the import happens inside the function under test.
+- If repo docs and service units advertise `pytest -q` from the checkout root,
+  keep the `src/` package importable during in-repo test runs instead of
+  assuming an editable install is already present.

@@ -4,7 +4,7 @@
 
 Do not file sensitive disclosures in public issues.
 
-For `nordility`, security-sensitive reports should be handled privately by the repository owner.
+For `dyno-lab`, security-sensitive reports should be handled privately by the repository owner.
 
 When reporting an issue, redact any local environment details that are not required to understand the problem.
 
