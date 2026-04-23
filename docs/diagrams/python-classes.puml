@@ -2,6 +2,30 @@
 set namespaceSeparator none
 class "AttrPatch" as dyno_lab.patch.AttrPatch {
 }
+class "AutoPassLoadCall" as dyno_lab.auto_pass.AutoPassLoadCall {
+  environ : object
+  override : bool
+  path : object
+  profile : object
+}
+class "AutoPassPatch" as dyno_lab.auto_pass.AutoPassPatch {
+  recorder
+}
+class "AutoPassRecorder" as dyno_lab.auto_pass.AutoPassRecorder {
+  KeepassCommandError
+  load_calls : list[AutoPassLoadCall]
+  resolve_calls : list[AutoPassResolveCall]
+  add_response(entry: str, outcome: Any) -> None
+  keepass_error(message: str) -> StubKeepassCommandError
+  load_config_environment(path: object) -> tuple[dict[str, str], dict[str, str]]
+  resolve_keepassxc_entry(entry: str, attrs_map: dict[str, str]) -> dict[str, str]
+}
+class "AutoPassResolveCall" as dyno_lab.auto_pass.AutoPassResolveCall {
+  allow_interactive : bool
+  attrs_map : dict[str, str]
+  config : object
+  entry : str
+}
 class "CLITestMixin" as dyno_lab.cli.CLITestMixin {
   run_cli(func: Any, args: list[str] | None, stdin: str | None) -> CliResult
 }
@@ -112,6 +136,8 @@ class "StaticSession" as dyno_lab.http.StaticSession {
   get(url: str, params: Any) -> _FakeResponse
   post(url: str, params: Any) -> _FakeResponse
 }
+class "<color:red>StubKeepassCommandError</color>" as dyno_lab.auto_pass.StubKeepassCommandError {
+}
 class "SubprocessPatch" as dyno_lab.proc.SubprocessPatch {
   side_effect : Any
   target : str
@@ -152,8 +178,12 @@ class "_FrozenDatetime" as dyno_lab.time._make_frozen_datetime_class._FrozenDate
 class "_ListHandler" as dyno_lab.log._ListHandler {
   emit(record: logging.LogRecord) -> None
 }
+dyno_lab.auto_pass.AutoPassRecorder --> dyno_lab.auto_pass.AutoPassLoadCall : load_calls
+dyno_lab.auto_pass.AutoPassPatch --> dyno_lab.auto_pass.AutoPassRecorder : recorder
+dyno_lab.auto_pass.AutoPassRecorder --> dyno_lab.auto_pass.AutoPassResolveCall : resolve_calls
 dyno_lab.http.SequenceSession --> dyno_lab.http._CapturedRequest : calls
 dyno_lab.http.StaticSession --> dyno_lab.http._CapturedRequest : calls
 dyno_lab.proc.ProcessRecorder --> dyno_lab.proc.CapturedCall : calls
+dyno_lab.auto_pass.StubKeepassCommandError --o dyno_lab.auto_pass.AutoPassRecorder : KeepassCommandError
 dyno_lab.preflight._CheckResult --o dyno_lab.preflight.PreflightReport : results
 @enduml
