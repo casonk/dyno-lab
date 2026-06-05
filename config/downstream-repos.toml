@@ -19,4 +19,10 @@ paths = [
   "./util-repos/auto-pass",                 # conftest.py + pyproject.toml
   "./util-repos/intake",                    # conftest.py + pyproject.toml
   "./util-repos/nordility",                 # conftest.py + pyproject.toml
+  "./util-repos/tachometer",               # conftest.py + pyproject.toml
+  "./util-repos/crew-chief",               # conftest.py + pyproject.toml
+  "./util-repos/shock-relay",              # conftest.py + pyproject.toml
+  "./util-repos/snowbridge",               # conftest.py + pyproject.toml
+  "./util-repos/short-circuit",            # conftest.py + pyproject.toml
+  "./research-repos/fred-public-data",     # conftest.py + pyproject.toml
 ]
