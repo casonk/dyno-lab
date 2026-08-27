@@ -1,7 +1,7 @@
 """Filesystem fixture utilities.
 
 Covers the ``tempfile.TemporaryDirectory`` / ``tmp_path`` patterns
-used in archility, auto-pass, intake, and personal-finance.
+used across the portfolio's consumer repos.
 
 Usage (context manager)::
 
