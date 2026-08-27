@@ -2,6 +2,10 @@
 # Paths are relative to the portfolio root.
 # Track explicit code/test integrations here, not generic shared-utility
 # mentions from AGENTS.md alone.
+#
+# This file is public and lists only public consumers. Private downstream
+# consumers are kept in the gitignored config/downstream-repos.local.toml so
+# their names never appear in a tracked file.
 
 [utility_repo]
 path = "./util-repos/dyno-lab"
@@ -9,8 +13,6 @@ path = "./util-repos/dyno-lab"
 [downstream_repos]
 tracking_basis = "explicit test or dependency integrations"
 paths = [
-  "./health-repos/private-repository",                 # conftest.py + pyproject.toml
-  "./private-repository",                     # conftest.py + dyno integration tests
   "./research-repos/citegres",              # conftest.py + pyproject.toml
   "./research-repos/pushshift_python",      # conftest.py + pyproject.toml
   "./research-repos/sonetsim",              # sonetsim/tests/conftest.py

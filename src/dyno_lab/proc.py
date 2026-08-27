@@ -1,6 +1,6 @@
 """Subprocess mocking utilities.
 
-Covers the patterns found across nordility, auto-pass, and private-repository:
+Covers the patterns found across nordility, auto-pass, and other consumer repos:
 
 - ``build_completed_process`` — quick ``CompletedProcess`` factory
 - ``ProcessRecorder`` — records every call and returns scripted responses

@@ -1,7 +1,7 @@
 """HTTP session mocking utilities.
 
-Covers the custom HTTP mock session pattern from private-repository and intake,
-where ``requests.Session`` is replaced with a scripted object.
+Covers the custom HTTP mock session pattern used by the portfolio's consumer
+repos, where ``requests.Session`` is replaced with a scripted object.
 
 Usage::
 

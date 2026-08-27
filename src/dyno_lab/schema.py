@@ -1,7 +1,7 @@
 """Schema and contract validation helpers.
 
-Covers the provider-parity and row-width patterns from private-repository,
-and the schema-shape validation patterns from doseido.
+Covers the provider-parity and row-width patterns, and the schema-shape
+validation patterns, used across the portfolio's consumer repos.
 
 Usage::
 
