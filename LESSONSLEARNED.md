@@ -57,6 +57,15 @@ change how future sessions work in this repo.
   keep the `src/` package importable during in-repo test runs instead of
   assuming an editable install is already present.
 
+### 2026-08-29 — Keep cross-repo queue conformance focused on lease mechanics
+
+- A shared delivery assertion should require only enqueue, claim, fail, and
+  complete callbacks plus stable operation IDs, payload preservation, and fresh
+  retry tokens; it must not embed a provider, database, or scheduler policy.
+- A fresh lease on retry prevents an old worker from safely finalizing a newer
+  claim, but it does not change provider timeouts into exactly-once delivery.
+  Keep user-visible idempotency with the caller or provider.
+
 ### dyno-lab API call signatures
 
 - `SubprocessPatch(side_effect)` — takes a **callable** as the first arg, not

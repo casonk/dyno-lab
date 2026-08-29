@@ -15,6 +15,7 @@ drawn from patterns across every tested repository in the portfolio.
 | `dyno_lab.fs` | Filesystem fixtures (`TempWorkdir`, `make_tree`) |
 | `dyno_lab.cli` | CLI capture (`capture_cli`, `CLITestMixin`, `CliResult`) |
 | `dyno_lab.http` | HTTP session mocking (`SequenceSession`, `StaticSession`, `RaisingSession`) |
+| `dyno_lab.delivery` | Leased at-least-once delivery adapter conformance helper |
 | `dyno_lab.schema` | Schema/contract helpers (`assert_parity`, `assert_row_width`) |
 | `dyno_lab.module` | Dynamic module loading (`load_module_by_path`) |
 | `dyno_lab.markers` | Shared pytest markers (`unit`, `integration`, `smoke`, `parity`, `slow`, `external`) |
@@ -139,6 +140,31 @@ runner = SmokeRunner([MyServiceSmoke()])
 summary = runner.run_all()
 summary.raise_if_failed()
 ```
+
+### Leased delivery conformance
+
+For an offline queue backed by a durable lease store, expose four small test
+callbacks and exercise the common lifecycle without coupling Dyno Lab to the
+provider or database:
+
+```python
+from dyno_lab.delivery import LeasedDeliveryDriver, assert_leased_delivery_contract
+
+exercise = assert_leased_delivery_contract(
+    LeasedDeliveryDriver(
+        enqueue=queue.enqueue,
+        claim=queue.claim,
+        complete=queue.complete,
+        fail=queue.fail,
+    ),
+    {"message": "retry safely"},
+)
+assert exercise.first_lease_token != exercise.retry_lease_token
+```
+
+The helper verifies at-least-once queue mechanics only. Provider timeouts can
+still yield duplicate user-visible delivery; keep exactly-once behavior in an
+explicit caller or provider idempotency key.
 
 ### Pytest fixtures
 

@@ -24,6 +24,7 @@ src/dyno_lab/
   http.py          — SequenceSession, StaticSession, RaisingSession (HTTP mock sessions)
   schema.py        — assert_parity, assert_row_width, assert_schema_keys (contract helpers)
   module.py        — load_module_by_path (dynamic module loading)
+  delivery.py      — leased at-least-once delivery adapter conformance helper
   markers.py       — MARKERS dict + register_markers() (shared pytest marker definitions)
   fixtures.py      — dyno_tmp, dyno_env, dyno_proc, dyno_cli (pytest fixtures)
   smoke.py         — SmokeTest, SmokeRunner, SmokeResult, SmokeSummary
@@ -108,6 +109,13 @@ shapes.  `assert_row_width` checks column counts.  `assert_schema_keys` and
 `SmokeTest` is an abstract base class.  Subclass it, implement `run()`, and
 return `SmokeResult.ok()` or `SmokeResult.failed()`.  `SmokeRunner` collects
 tests, calls `run_safe()` on each, and returns a `SmokeSummary`.
+
+### Leased delivery conformance
+
+`LeasedDeliveryDriver` plus `assert_leased_delivery_contract()` proves the
+minimal queue lifecycle: a delivery is claimed with a token, failed into a
+zero-delay retry, re-claimed with a new token, completed, and no longer
+claimable. It is provider-agnostic and does not promise exactly-once delivery.
 
 ## Change Guidance
 
