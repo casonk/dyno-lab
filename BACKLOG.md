@@ -13,3 +13,5 @@ Mark items `[x]` when complete and move them to Done.
 ## In Progress
 
 ## Done
+
+- [x] [manual:2026-08-29] **Add durable leased-delivery conformance helper** — Added a dependency-free callback contract that proves enqueue, lease, retry, replacement lease, and completion behavior without coupling provider adapters to one storage engine.

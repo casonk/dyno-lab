@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- `dyno_lab.delivery` — provider-neutral leased delivery conformance helper
+  for the enqueue, claim, retry, completion lifecycle
+
 ## [0.2.0] — 2026-04-03
 
 ### Added
