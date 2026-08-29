@@ -10,8 +10,7 @@
   "Secret": "infra",
   "File": "tests/test_auto_pass.py",
   "SymlinkFile": "",
-  "Commit": "89b2e450c86e5bdbdd38a7dce0ac4e6e93320ede",
-  "Link": "https://github.com/casonk/dyno-lab/blob/89b2e450c86e5bdbdd38a7dce0ac4e6e93320ede/tests/test_auto_pass.py#L16",
+  "Commit": "5678e08c36f09fab3887462292abebca6606a41c",
   "Entropy": 2.321928,
   "Author": "Cason Konzer",
   "Email": "72440835+casonk@users.noreply.github.com",
@@ -21,6 +20,6 @@
    "keepass",
    "sensitive-config"
   ],
-  "Fingerprint": "89b2e450c86e5bdbdd38a7dce0ac4e6e93320ede:tests/test_auto_pass.py:keepass-real-profile-name:16"
+  "Fingerprint": "5678e08c36f09fab3887462292abebca6606a41c:tests/test_auto_pass.py:keepass-real-profile-name:16"
  }
 ]
