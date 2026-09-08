@@ -66,6 +66,17 @@ class "FastSleep" as dyno_lab.time.FastSleep {
 class "FrozenTime" as dyno_lab.time.FrozenTime {
   timestamp : float
 }
+class "LeasedDeliveryDriver" as dyno_lab.delivery.LeasedDeliveryDriver {
+  claim : Callable[[str], Claim | None]
+  complete : Callable[[Claim, str], None]
+  enqueue : Callable[[Mapping[str, Any]], str]
+  fail : Callable[[Claim, str, Mapping[str, Any], int], None]
+}
+class "LeasedDeliveryExercise" as dyno_lab.delivery.LeasedDeliveryExercise {
+  first_lease_token : str
+  operation_id : str
+  retry_lease_token : str
+}
 class "LogCapture" as dyno_lab.log.LogCapture {
   records : list[logging.LogRecord]
   assert_logged(level: int, fragment: str) -> None
