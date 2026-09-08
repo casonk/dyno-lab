@@ -2,10 +2,11 @@
 set namespaceSeparator none
 top to bottom direction
 skinparam componentStyle rectangle
-rectangle "dyno_lab\n0 child pkg, 16 modules\n17 python files\nexamples: auto_pass, base, cli" as dyno_lab
+rectangle "dyno_lab\n0 child pkg, 17 modules\n18 python files\nexamples: auto_pass, base, cli" as dyno_lab
 rectangle "dyno_lab.auto_pass\n1 python file" as dyno_lab.auto_pass
 rectangle "dyno_lab.base\n1 python file" as dyno_lab.base
 rectangle "dyno_lab.cli\n1 python file" as dyno_lab.cli
+rectangle "dyno_lab.delivery\n1 python file" as dyno_lab.delivery
 rectangle "dyno_lab.env\n1 python file" as dyno_lab.env
 rectangle "dyno_lab.fixtures\n1 python file" as dyno_lab.fixtures
 rectangle "dyno_lab.fs\n1 python file" as dyno_lab.fs
@@ -22,6 +23,7 @@ rectangle "dyno_lab.time\n1 python file" as dyno_lab.time
 dyno_lab --> dyno_lab.auto_pass
 dyno_lab --> dyno_lab.base
 dyno_lab --> dyno_lab.cli
+dyno_lab --> dyno_lab.delivery
 dyno_lab --> dyno_lab.env
 dyno_lab --> dyno_lab.fs
 dyno_lab --> dyno_lab.http
