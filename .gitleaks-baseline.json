@@ -10,7 +10,7 @@
   "Secret": "infra",
   "File": "tests/test_auto_pass.py",
   "SymlinkFile": "",
-  "Commit": "5678e08c36f09fab3887462292abebca6606a41c",
+  "Commit": "61a9d96cab992e7ae3d700d86dfbb29be7687724",
   "Entropy": 2.321928,
   "Author": "Cason Konzer",
   "Email": "72440835+casonk@users.noreply.github.com",
@@ -20,6 +20,6 @@
    "keepass",
    "sensitive-config"
   ],
-  "Fingerprint": "5678e08c36f09fab3887462292abebca6606a41c:tests/test_auto_pass.py:keepass-real-profile-name:16"
+  "Fingerprint": "61a9d96cab992e7ae3d700d86dfbb29be7687724:tests/test_auto_pass.py:keepass-real-profile-name:16"
  }
 ]
