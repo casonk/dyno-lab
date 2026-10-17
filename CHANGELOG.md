@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-10-16
+
 ### Added
 
 - `dyno_lab.delivery` — provider-neutral leased delivery conformance helper
