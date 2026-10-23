@@ -1,4 +1,4 @@
-@startuml classes_dyno-lab
+@startuml classes_checkout
 set namespaceSeparator none
 class "AttrPatch" as dyno_lab.patch.AttrPatch {
 }
