@@ -352,7 +352,7 @@ class TestMarkersModuleAndTime(unittest.TestCase):
             load_module_by_path("/tmp/__dyno_lab_no_such_module__.py")
 
     def test_frozen_utcnow_is_the_frozen_instant_without_a_timezone(self):
-        instant = datetime.datetime(2026, 11, 2, 12, 30, tzinfo=datetime.timezone.utc)
+        instant = datetime.datetime(2026, 11, 2, 12, 30, tzinfo=datetime.UTC)
         with FrozenTime(instant):
             now = datetime.datetime.utcnow()  # noqa: DTZ003 - the thing under test
         self.assertEqual(now, datetime.datetime(2026, 11, 2, 12, 30))

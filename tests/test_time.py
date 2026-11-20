@@ -8,7 +8,7 @@ import unittest
 
 from dyno_lab.time import FastSleep, FrozenTime
 
-_UTC = datetime.timezone.utc
+_UTC = datetime.UTC
 
 
 class TestFrozenTime(unittest.TestCase):
