@@ -31,7 +31,7 @@ import datetime
 from typing import Any
 from unittest.mock import patch
 
-_UTC = datetime.timezone.utc
+_UTC = datetime.UTC
 _DEFAULT_FROZEN = datetime.datetime(2025, 1, 1, 0, 0, 0, tzinfo=_UTC)
 
 
